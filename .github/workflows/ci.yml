@@ -23,5 +23,14 @@ jobs:
       - name: Grant execute permission for gradlew (если Gradle-скрипты не исполняемые)
         run: chmod +x gradlew
 
+      - name: Run tests
+        run: ./gradlew test
+
+              - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: build/reports/tests/test/
+
       - name: Build with Gradle
         run: ./gradlew build
