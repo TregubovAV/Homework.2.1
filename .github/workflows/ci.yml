@@ -23,6 +23,11 @@ jobs:
       - name: Grant execute permission for gradlew (если Gradle-скрипты не исполняемые)
         run: chmod +x gradlew
 
+      - name: Start application
+        run: |
+          nohup java -jar artifacts/app-order.jar > server.log 2>&1 &
+          sleep 5  # Ждем, пока сервер запустится
+
       - name: Run tests
         run: ./gradlew test
 
